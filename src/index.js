@@ -3,6 +3,8 @@ const express = require('express');
 const colors = require('colors')
 const config = require('../src/config')
 
+require('./db');
+
 const app = express();
 
 PORT = config.module.PORT || 5000;
