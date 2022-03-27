@@ -1,5 +1,6 @@
 
 const express = require('express');
+const morgan = require('morgan')
 const colors = require('colors')
 const config = require('../src/config')
 
@@ -10,8 +11,12 @@ const app = express();
 PORT = config.module.PORT || 5000;
 
 //^middlewares
-
+app.use(morgan('dev'))
 app.use(express.json());
+
+//^ rutas
+
+app.use('/api', require('./routes/user.routes'));
 
 //^ conexion al servidor 
 
