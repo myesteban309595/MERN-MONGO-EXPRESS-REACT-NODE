@@ -1,0 +1,28 @@
+###
+GET http://localhost:5000/api/62425b23ad7fe4f192d9a7c8 HTTP/1.1
+
+###
+GET http://localhost:5000/api/ HTTP/1.1
+
+###
+POST http://localhost:5000/api/ HTTP/1.1
+content-Type: : application/json
+
+{
+    "tarea": "beber agua",
+    "descripcion": "voy a beber agua"
+}
+
+###
+
+PUT http://localhost:5000/api/624345097abd480debb87688 HTTP/1.1
+content-Type: : application/json
+
+{
+    "tarea": "beber agua",
+    "descripcion": "voy a beber agua"
+}
+
+###
+
+DELETE http://localhost:5000/api/62434443ad7e765c0d4379c3 HTTP/1.1

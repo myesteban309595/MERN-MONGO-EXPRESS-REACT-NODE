@@ -2,7 +2,10 @@
 const express = require('express');
 const morgan = require('morgan')
 const colors = require('colors')
-const config = require('../src/config')
+const path = require('path');
+
+const config = require('../src/config');
+const { dirname } = require('path');
 
 require('./db');
 
@@ -14,9 +17,13 @@ PORT = config.module.PORT || 5000;
 app.use(morgan('dev'))
 app.use(express.json());
 
-//^ rutas
+//^ rutas API
 
-app.use('/api', require('./routes/user.routes'));
+app.use('/api', require('./routes/tareas.routes'));
+
+//^ rutas estaticas
+
+app.use(express.static(path.join(__dirname,'public'))); //& el index busca el html y lo pinta por pantalla
 
 //^ conexion al servidor 
 
@@ -26,3 +33,5 @@ app.listen(PORT, ()=> {
 })
 
 module.exports = app;
+
+

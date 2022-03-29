@@ -1,44 +1,39 @@
 
 const mongoose = require('mongoose');
 
-const userModel = require('./models/user.models');
+const tareaModel = require('./models/tareas.models');
 
 (async()=>{
-
-    await mongoose.connect('mongodb://localhost/mern-api-practice')
+    //mongodb://localhost/mern-api-practice
+    //mongodb://localhost:27017/?readPreference=primary&appname=MongoDB%20Compass&directConnection=true&ssl=false
+    await mongoose.connect('mongodb://localhost/mern-api-practice-tasks',{
+        useNewUrlParser: true, 
+        useUnifiedTopology: true
+    })
     .then(db => console.log(("conectado a la base de datos ").bgGreen.black))
     .catch(error => console.error(error))
 
     //^ verificamos si hay informacion en la base de datos, de no haber, los creamos automaticamente
 
-    const userExist = userModel.find();
+    const tareaExist = await tareaModel.find();
 
-    if( userExist.length == 0)
+    if( tareaExist.length == 0)
     {
-        const user1 = new userModel({
+        const tarea1 = new tareaModel({
 
-            nombre : "marlon yoel",
-            apellido : "esteban valencia",
-            email: "marlon@hotmail.com",
-            edad: 26,
-            telefono : "3124568987",
-            direccion : "cll estorbo",
+            tarea : "comer",
+            descripcion : "es la hora de comer"
 
         })
-        const user2 = new userModel({
+        const tarea2 = new tareaModel({
 
-            
-            nombre : "ingrid paola",
-            apellido : "jimenez",
-            email: "ingrid@hotmail.com",
-            edad: 25,
-            telefono : "3002455689",
-            direccion : "cll siempre viva",
+            tarea : "programar",
+            descripcion : "es la hora de programar",
 
         })
 
-        user1.save();
-        user2.save();
+        tarea1.save();
+        tarea2.save();
     }
 
 })();
